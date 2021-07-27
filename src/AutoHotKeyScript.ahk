@@ -59,3 +59,55 @@ RETURN
 ^>!n::Run notepad++.exe		;Left Alt + c for Notepad++
 ;----------------------------------------------------------------------
 
+
+;----------------------------------------------------------------------
+;			Enclose selection in "[]"
+;----------------------------------------------------------------------
+!]::								;Alt + ]
+![::								;Alt + [				
+^>![::          					;AltGr + [
+^>!]::          					;AltGr + ]
+SavedClipboard := Clipboard
+Send, ^c
+Sleep 50
+; ClipWait
+Chars := StrLen(Clipboard)
+Send,{Left}{[}{Right %Chars%}{]}
+Clipboard := SavedClipboard
+Return
+;----------------------------------------------------------------------
+
+
+;----------------------------------------------------------------------
+;			Enclose selection in "()"
+;----------------------------------------------------------------------
+!9::								;Alt + 9
+!0::								;Alt + 0
+<^>!9::								;AltGr + 9
+<^>!0::								;AltGr + 0
+SavedClipboard := Clipboard
+Send, ^c
+Sleep 50
+; ClipWait
+Chars := StrLen(Clipboard)
+Send,{Left}{(}{Right %Chars%}{)}
+Clipboard := SavedClipboard
+Return
+;----------------------------------------------------------------------
+
+
+;----------------------------------------------------------------------
+;			Enclose selection in "$()"
+;----------------------------------------------------------------------
+!4::								;Alt + 4
+^>!4::								;AltGr + 4
+SavedClipboard := Clipboard
+Send, ^c
+Sleep 50
+; ClipWait
+Chars := StrLen(Clipboard)
+Send,{Left}{$}{(}{Right %Chars%}{)}
+Clipboard := SavedClipboard
+Return
+;----------------------------------------------------------------------
+
